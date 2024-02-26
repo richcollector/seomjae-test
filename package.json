@@ -1,33 +1,31 @@
 {
-  "name": "seomjae-test",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "prepare": "husky install"
-  },
-  "dependencies": {
-    "next": "14.1.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "styled-components": "^6.1.8"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.1.0",
-    "eslint-config-prettier": "^9.1.0",
-    "husky": "^9.0.11",
-    "prettier": "^3.2.5",
-    "typescript": "^5"
-  },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
-  }
+	"name": "seomjae-test",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"prepare": "husky install"
+	},
+	"dependencies": {
+		"@ckeditor/ckeditor5-react": "^6.2.0",
+		"ckeditor5-custom-build": "file:ckeditor5",
+		"next": "14.1.0",
+		"react": "^18",
+		"react-dom": "^18",
+		"styled-components": "^6.1.8"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"eslint": "^8",
+		"eslint-config-next": "14.1.0",
+		"eslint-config-prettier": "^9.1.0",
+		"husky": "^9.0.11",
+		"prettier": "^3.2.5",
+		"typescript": "^5"
+	}
 }

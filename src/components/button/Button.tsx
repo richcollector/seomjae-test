@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 export default function Button() {
-	return <CustomButton>글쓰기</CustomButton>;
+	return (
+		<Link href={'/write'}>
+			<CustomButton>글쓰기</CustomButton>
+		</Link>
+	);
 }
 
 const CustomButton = styled.button`

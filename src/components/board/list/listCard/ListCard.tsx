@@ -1,6 +1,25 @@
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 export default function ListCard() {
+	const mathMLRef = useRef<HTMLDivElement | null>(null);
+
+	useEffect(() => {
+		// MathML 문자열
+		const mathMLString =
+			'<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>5</mn></math>';
+
+		// MathML 문자열을 파싱하여 DOM 요소로 변환
+		const parser = new DOMParser();
+		const mathMLDocument = parser.parseFromString(mathMLString, 'application/xml');
+		const mathMLElement = mathMLDocument.documentElement;
+
+		// useRef로 참조한 div에 MathML 추가
+		if (mathMLRef.current && mathMLElement) {
+			mathMLRef.current.appendChild(mathMLElement);
+		}
+	}, []);
+
 	return (
 		<CardWrapper>
 			<CardImg src="img/math.jpg" alt="math" />
@@ -8,7 +27,7 @@ export default function ListCard() {
 				<CardTitle>
 					<p style={{ color: '#524fa1', fontWeight: '600' }}>No categories</p>
 					<h1>수학문제</h1>
-					<p style={{ color: '#5e5f61' }}>피타고라스의 정리</p>
+					<div ref={mathMLRef}></div>
 				</CardTitle>
 				<CardInfo>
 					<p style={{ color: '#524fa1', fontWeight: '600' }}>2024.02.23</p>
