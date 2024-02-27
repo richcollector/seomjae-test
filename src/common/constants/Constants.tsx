@@ -1,3 +1,7 @@
+export const URL = 'http://localhost:4000/';
+
+export const PAGE_PER_COUNT = 10;
+
 export const WRITE_BUTTON = [
 	['/', '뒤로가기'],
 	['', '글쓰기'],

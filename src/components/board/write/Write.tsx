@@ -2,8 +2,19 @@ import CommonButton from '@/components/button/CommonButton';
 import CommonInput from '@/components/input/CommonInput';
 import Editor from './customEditor/Editor';
 import { WRITE_BUTTON } from '@/common/constants/Constants';
+import { useAppSelector, useAppDispatch } from '@/common/hooks/useRedux';
+import { selectList, listActions } from '@/common/store/slice/listSlice';
 
 export default function Write() {
+	const list = useAppSelector(selectList);
+	const dispatch = useAppDispatch();
+
+	const handleOnClick = () => {
+		dispatch(listActions.add(10));
+	};
+
+	console.log('list', list);
+
 	return (
 		<>
 			<TitleBarWrapper>

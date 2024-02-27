@@ -5,6 +5,13 @@ import { MAIN_BUTTON } from '@/common/constants/Constants';
 import Head from 'next/head';
 
 export default function Home() {
+	Apis.get()
+		.then(res => {
+			console.log('??', res);
+		})
+		.catch(err => {
+			console.error('??', err);
+		});
 	return (
 		<>
 			<Head>
@@ -29,6 +36,7 @@ export default function Home() {
 import styled from 'styled-components';
 import CommonInput from '@/components/input/CommonInput';
 import SearchIcon from '@/components/input/SearchIcon';
+import { Apis } from '@/common/apis/Apis';
 
 const SearchButtonBarWrapper = styled.div`
 	width: 100%;
