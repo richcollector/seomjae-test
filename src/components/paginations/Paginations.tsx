@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react';
 import { PAGE_PER_COUNT } from '@/common/constants/Constants';
+import { useRouter } from 'next/router';
+import { useAppSelector } from '@/common/hooks/useRedux';
+import { selectList } from '@/common/store/slice/listSlice';
 
-interface IPropsPaginations {
-	courseCount: number;
+export default function Pagination({
+	setPage,
+}: {
 	setPage: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export default function Pagination({ courseCount, setPage }: IPropsPaginations) {
+}) {
+	const list = useAppSelector(selectList);
 	const [startPage, setStartPage] = useState(1);
 	const [activedPage, setActivedPage] = useState(1);
-	const lastPage = Math.ceil((courseCount ?? PAGE_PER_COUNT) / PAGE_PER_COUNT);
+	const lastPage = Math.ceil((list.length ?? PAGE_PER_COUNT) / PAGE_PER_COUNT);
 	const router = useRouter();
 
 	useEffect(() => {
 		setPage(1);
-	}, [router.query]);
+	}, [router]);
 
 	const onClickPage = (event: React.MouseEvent<HTMLSpanElement>): void => {
 		const activedPage = Number(event.currentTarget.id);
@@ -63,7 +66,7 @@ export default function Pagination({ courseCount, setPage }: IPropsPaginations) 
 }
 
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
+
 const PaginationWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -75,7 +78,7 @@ const PaginationWrapper = styled.div`
 
 const Page = styled.button<{ $isActive: boolean }>`
 	color: ${props => (props.$isActive ? '#fff' : '#999')};
-	background-color: ${props => (props.$isActive ? '#orange' : '')};
+	background-color: ${props => (props.$isActive ? 'orange' : '')};
 	font-weight: ${props => (props.$isActive ? 'bold' : 'normal')};
 	cursor: ${props => (props.$isActive ? 'none' : 'pointer')};
 

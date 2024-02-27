@@ -1,21 +1,28 @@
 import { useAppSelector } from '@/common/hooks/useRedux';
 import { selectList } from '@/common/store/slice/listSlice';
 import ListCard from './listCard/ListCard';
+import Pagination from '@/components/paginations/Paginations';
+import { useState } from 'react';
 
 export default function List() {
 	const list = useAppSelector(selectList);
-	console.log('??', list);
+	const [page, setPage] = useState(1);
 
 	return (
 		<>
 			<TotalCard>
 				<span>{list.length} total</span>
 			</TotalCard>
-			<ListWrapper>
-				{list.map((card, i) => (
-					<ListCard key={i} card={card} />
-				))}
-			</ListWrapper>
+			{list ? (
+				<ListWrapper>
+					{list.map((card, i) => (
+						<ListCard key={i} card={card} />
+					))}
+				</ListWrapper>
+			) : (
+				<LoadingWrapper>...Loading</LoadingWrapper>
+			)}
+			{/* <Pagination setPage={setPage} />/ */}
 		</>
 	);
 }
@@ -43,6 +50,18 @@ const ListWrapper = styled.div`
 	@media (max-width: 500px) {
 		grid-template-columns: repeat(1, 1fr);
 	}
+`;
+
+const LoadingWrapper = styled.div`
+	width: 100%;
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 2rem;
 `;
 
 const TotalCard = styled.div`

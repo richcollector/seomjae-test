@@ -6,7 +6,6 @@ import { listActions } from '../store/slice/listSlice';
 export default function useInput() {
 	const debounce = useDebouce<string>(value => {
 		console.log('?', value);
-		dispatch(listActions.findList(value));
 	}, 300);
 	const dispatch = useAppDispatch();
 

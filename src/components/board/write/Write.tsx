@@ -2,24 +2,40 @@ import CommonButton from '@/components/button/CommonButton';
 import CommonInput from '@/components/input/CommonInput';
 import Editor from './customEditor/Editor';
 import { WRITE_BUTTON } from '@/common/constants/Constants';
-import { useAppSelector, useAppDispatch } from '@/common/hooks/useRedux';
-import { selectList, listActions } from '@/common/store/slice/listSlice';
+import { useAppDispatch } from '@/common/hooks/useRedux';
+import { listActions } from '@/common/store/slice/listSlice';
 import { useRouter } from 'next/router';
 import OnClickButton from '@/components/button/OnClickButton copy';
 import { useState } from 'react';
+import useDebouce from '@/common/hooks/useDebounce';
 
 export default function Write() {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
-	const [word, setWord] = useState({ title: '', content: '' });
+	const [word, setWord] = useState({ title: '', content: '', date: '' });
+
+	const debounce = useDebouce<string>(value => {
+		if (value) {
+			setWord(prevWord => ({
+				...prevWord,
+				date: value,
+			}));
+		}
+	}, 300);
 
 	const handleOnClick = () => {
-		dispatch(listActions.add([word]));
-		router.push('/');
+		if (word.title && word.content) {
+			dispatch(listActions.add([word]));
+			router.push('/');
+		} else alert('값을 입력해주세요.');
 	};
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const newTitle = event.currentTarget.value;
+		const currentTime = new Date();
+		const formattedTime = currentTime.toISOString().split('T')[0];
+		debounce(formattedTime);
+
 		setWord(prevWord => ({
 			...prevWord,
 			title: newTitle,

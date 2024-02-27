@@ -1,10 +1,9 @@
 import List from '@/components/board/list/List';
-import Pagination from '@/components/paginations/Paginations';
 import CommonButton from '@/components/button/CommonButton';
 import { MAIN_BUTTON } from '@/common/constants/Constants';
 import Head from 'next/head';
-import CommonInput from '@/components/input/CommonInput';
 import SearchIcon from '@/components/input/SearchIcon';
+import SearchInput from '@/components/input/SearchInput';
 
 export default function Home() {
 	const handleOnClick = () => {};
@@ -14,23 +13,21 @@ export default function Home() {
 				<title>seomjae-test</title>
 				<link rel="icon" href="logo/favicon.ico" />
 			</Head>
-			<SearchBarWrapper>
+			{/* <SearchBarWrapper>
 				<SearchIcon />
 				<SearchInput />
-			</SearchBarWrapper>
+			</SearchBarWrapper> */}
 			<SearchButtonBarWrapper>
 				{MAIN_BUTTON.map((btnName, idx) => (
 					<CommonButton key={idx} btnName={btnName} />
 				))}
 			</SearchButtonBarWrapper>
 			<List />
-			{/* <Pagination /> */}
 		</>
 	);
 }
 
 import styled from 'styled-components';
-import SearchInput from '@/components/input/SearchInput';
 
 const SearchButtonBarWrapper = styled.div`
 	width: 100%;

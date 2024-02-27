@@ -15,6 +15,7 @@ export default function Editor({
 		React.SetStateAction<{
 			title: string;
 			content: string;
+			date: string;
 		}>
 	>;
 }) {

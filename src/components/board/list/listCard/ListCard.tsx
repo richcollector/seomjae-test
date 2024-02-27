@@ -4,15 +4,12 @@ export default function ListCard({ card }: any) {
 	const mathMLRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
-		// MathML 문자열
 		const mathMLString = card.content;
 
-		// MathML 문자열을 파싱하여 DOM 요소로 변환
 		const parser = new DOMParser();
 		const mathMLDocument = parser.parseFromString(mathMLString, 'application/xml');
 		const mathMLElement = mathMLDocument.documentElement;
 
-		// useRef로 참조한 div에 MathML 추가
 		if (mathMLRef.current && mathMLElement) {
 			mathMLRef.current.appendChild(mathMLElement);
 		}
@@ -27,7 +24,7 @@ export default function ListCard({ card }: any) {
 					<div ref={mathMLRef}></div>
 				</CardTitle>
 				<CardInfo>
-					<p style={{ color: '#524fa1', fontWeight: '600' }}>2024.02.23</p>
+					<p style={{ color: '#524fa1', fontWeight: '600' }}>{card.date}</p>
 				</CardInfo>
 			</CardBody>
 		</CardWrapper>
