@@ -24,7 +24,6 @@ import {
 import { Indent } from '@ckeditor/ckeditor5-indent';
 import { Link } from '@ckeditor/ckeditor5-link';
 import { List } from '@ckeditor/ckeditor5-list';
-import { Markdown } from '@ckeditor/ckeditor5-markdown-gfm';
 import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
@@ -54,7 +53,6 @@ class Editor extends ClassicEditor {
 		Italic,
 		Link,
 		List,
-		Markdown,
 		MathType,
 		MediaEmbed,
 		Paragraph,
@@ -71,6 +69,8 @@ class Editor extends ClassicEditor {
 			items: [
 				'heading',
 				'|',
+				'bold',
+				'italic',
 				'link',
 				'bulletedList',
 				'numberedList',
@@ -84,11 +84,9 @@ class Editor extends ClassicEditor {
 				'mediaEmbed',
 				'undo',
 				'redo',
-				'ckbox',
 				'MathType',
 				'ChemType',
-				'bold',
-				'italic'
+				'ckbox'
 			]
 		},
 		language: 'ko',

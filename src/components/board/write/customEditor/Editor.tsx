@@ -8,10 +8,19 @@ const CustomEditor = dynamic(
 	{ ssr: false },
 );
 
-export default function Editor() {
+export default function Editor({
+	setWord,
+}: {
+	setWord: React.Dispatch<
+		React.SetStateAction<{
+			title: string;
+			content: string;
+		}>
+	>;
+}) {
 	return (
 		<CustomEditorWrapper>
-			<CustomEditor />
+			<CustomEditor setWord={setWord} />
 		</CustomEditorWrapper>
 	);
 }

@@ -24,15 +24,28 @@ const editorConfiguration = {
 	],
 };
 
-function CustomEditor(props: any) {
+function CustomEditor({
+	setWord,
+}: {
+	setWord: React.Dispatch<
+		React.SetStateAction<{
+			title: string;
+			content: string;
+		}>
+	>;
+}) {
 	return (
 		<CKEditor
 			editor={Editor}
 			config={editorConfiguration}
-			data={props.initialData}
 			onChange={(event, editor) => {
 				const data = editor.getData();
 				console.log({ event, editor, data });
+
+				setWord(prevWord => ({
+					...prevWord,
+					content: data,
+				}));
 			}}
 		/>
 	);

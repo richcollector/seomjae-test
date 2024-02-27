@@ -9,18 +9,21 @@ import OnClickButton from '@/components/button/OnClickButton copy';
 import { useState } from 'react';
 
 export default function Write() {
-	const list = useAppSelector(selectList);
 	const dispatch = useAppDispatch();
 	const router = useRouter();
-	const [word, serword] = useState('');
+	const [word, setWord] = useState({ title: '', content: '' });
 
 	const handleOnClick = () => {
-		dispatch(listActions.add([{ title: '연습', contnet: '잘가니' }]));
+		dispatch(listActions.add([word]));
 		router.push('/');
 	};
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const newVal = event.currentTarget.value;
+		const newTitle = event.currentTarget.value;
+		setWord(prevWord => ({
+			...prevWord,
+			title: newTitle,
+		}));
 	};
 
 	return (
@@ -30,14 +33,14 @@ export default function Write() {
 			</TitleBarWrapper>
 			<WriteButtonBarWrapper>
 				{WRITE_BUTTON.map((btnName, idx) =>
-					btnName[0] === '' ? (
+					btnName[0] !== '' ? (
 						<CommonButton key={idx} btnName={btnName} />
 					) : (
 						<OnClickButton key={idx} btnName={btnName} handleOnClick={handleOnClick} />
 					),
 				)}
 			</WriteButtonBarWrapper>
-			<Editor />
+			<Editor setWord={setWord} />
 		</>
 	);
 }

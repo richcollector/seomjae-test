@@ -1,7 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../Store';
-import { Apis } from '@/common/apis/Apis';
 
 interface IListState {
 	list: Array<Object>;
@@ -12,12 +11,12 @@ const initialState: IListState = {
 		{
 			title: '수학공식1',
 			content:
-				'<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>5</mn></math>',
+				'<p><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>5</mn></math><p>',
 		},
 		{
 			title: '수학공식2',
 			content:
-				'<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>5</mn></math>',
+				'<p><math xmlns="http://www.w3.org/1998/Math/MathML"><mroot><mn>111222</mn><mrow>&#160;</mrow></mroot></math></p>',
 		},
 	],
 };

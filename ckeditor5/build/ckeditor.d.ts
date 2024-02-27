@@ -15,7 +15,6 @@ import { Image, ImageCaption, ImageStyle, ImageToolbar, ImageUpload, PictureEdit
 import { Indent } from '@ckeditor/ckeditor5-indent';
 import { Link } from '@ckeditor/ckeditor5-link';
 import { List } from '@ckeditor/ckeditor5-list';
-import { Markdown } from '@ckeditor/ckeditor5-markdown-gfm';
 import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
@@ -24,7 +23,7 @@ import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { Undo } from '@ckeditor/ckeditor5-undo';
 import MathType from '@wiris/mathtype-ckeditor5';
 declare class Editor extends ClassicEditor {
-    static builtinPlugins: (typeof Autoformat | typeof BlockQuote | typeof Bold | typeof CKBox | typeof CloudServices | typeof Essentials | typeof Heading | typeof Image | typeof ImageCaption | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Italic | typeof Link | typeof List | typeof Markdown | typeof MathType | typeof MediaEmbed | typeof Paragraph | typeof PasteFromOffice | typeof PictureEditing | typeof Table | typeof TableToolbar | typeof TextTransformation | typeof Undo)[];
+    static builtinPlugins: (typeof Autoformat | typeof BlockQuote | typeof Bold | typeof CKBox | typeof CloudServices | typeof Essentials | typeof Heading | typeof Image | typeof ImageCaption | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Italic | typeof Link | typeof List | typeof MathType | typeof MediaEmbed | typeof Paragraph | typeof PasteFromOffice | typeof PictureEditing | typeof Table | typeof TableToolbar | typeof TextTransformation | typeof Undo)[];
     static defaultConfig: EditorConfig;
 }
 export default Editor;

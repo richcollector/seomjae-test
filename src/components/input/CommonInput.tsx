@@ -2,14 +2,14 @@ export default function CommonInput({
 	word,
 	handleInputChange,
 }: {
-	word: string;
+	word: { title: string; content: string };
 	handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
 	return (
 		<Input
 			type="text"
 			placeholder="입력해 주세요."
-			value={word}
+			value={word.title}
 			onChange={handleInputChange}
 			autoFocus
 		/>
