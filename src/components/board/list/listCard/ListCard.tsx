@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
 
 export default function ListCard() {
 	const mathMLRef = useRef<HTMLDivElement | null>(null);
@@ -25,7 +24,6 @@ export default function ListCard() {
 			<CardImg src="img/math.jpg" alt="math" />
 			<CardBody>
 				<CardTitle>
-					<p style={{ color: '#524fa1', fontWeight: '600' }}>No categories</p>
 					<h1>수학문제</h1>
 					<div ref={mathMLRef}></div>
 				</CardTitle>
@@ -37,6 +35,7 @@ export default function ListCard() {
 	);
 }
 
+import styled from 'styled-components';
 const CardWrapper = styled.div`
 	width: 100%;
 	height: 100%;
@@ -50,8 +49,11 @@ const CardWrapper = styled.div`
 	border-radius: 0.5rem;
 	border: 1px solid rgb(225, 226, 228);
 
+	cursor: pointer;
+
 	&:hover {
 		border: 0.5rem solid orange;
+		filter: brightness(95%);
 	}
 `;
 

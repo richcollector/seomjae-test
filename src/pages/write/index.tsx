@@ -1,13 +1,9 @@
-import Editor from '@/components/board/write/customEditor/Editor';
-import ButtonBar from '@/components/button/ButtonBar';
-import SearchBar from '@/components/search/SearchBar';
+import Write from '@/components/board/write/Write';
 
 export default function WritePage() {
 	return (
 		<>
-			<SearchBar />
-			<ButtonBar />
-			<Editor />
+			<Write />
 		</>
 	);
 }

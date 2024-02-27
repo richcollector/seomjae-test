@@ -21,6 +21,6 @@ const CustomEditorWrapper = styled.div`
 	width: 100%;
 
 	[role='textbox'] {
-		height: 1000px;
+		height: 100vh;
 	}
 `;
