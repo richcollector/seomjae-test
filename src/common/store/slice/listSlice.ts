@@ -36,6 +36,7 @@ export const listSlice = createSlice({
 export const listActions = listSlice.actions;
 
 export const selectList = (state: RootState) => state.listReducer.list;
+
 export const findList = (state: RootState) => {
 	state.listReducer.list;
 };

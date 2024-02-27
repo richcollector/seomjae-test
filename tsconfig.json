@@ -16,7 +16,12 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"src/components/board/write/customEditor/CustomEditor.jsx"
+	],
 	"exclude": ["node_modules"]
 	// "lint-staged": {
 	// 	"*.{ts,tsx}": "eslint --fix",

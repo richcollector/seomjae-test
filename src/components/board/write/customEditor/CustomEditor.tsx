@@ -31,6 +31,7 @@ function CustomEditor({
 		React.SetStateAction<{
 			title: string;
 			content: string;
+			date: string;
 		}>
 	>;
 }) {
