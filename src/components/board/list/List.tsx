@@ -1,14 +1,19 @@
+import { useAppSelector } from '@/common/hooks/useRedux';
+import { selectList } from '@/common/store/slice/listSlice';
 import ListCard from './listCard/ListCard';
 
 export default function List() {
+	const list = useAppSelector(selectList);
+	console.log('??', list);
+
 	return (
 		<>
 			<TotalCard>
-				<span>228 total</span>
+				<span>{list.length} total</span>
 			</TotalCard>
 			<ListWrapper>
-				{new Array(10).fill(1).map((e, i) => (
-					<ListCard key={i} />
+				{list.map((card, i) => (
+					<ListCard key={i} card={card} />
 				))}
 			</ListWrapper>
 		</>
@@ -16,6 +21,7 @@ export default function List() {
 }
 
 import styled from 'styled-components';
+
 const ListWrapper = styled.div`
 	width: 100%;
 	display: grid;

@@ -1,6 +1,6 @@
-export const URL = 'http://localhost:4000/';
+export const URL = 'http://localhost:4000/list';
 
-export const PAGE_PER_COUNT = 10;
+export const PAGE_PER_COUNT = 8;
 
 export const WRITE_BUTTON = [
 	['/', '뒤로가기'],

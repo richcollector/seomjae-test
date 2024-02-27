@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react';
 
-export default function ListCard() {
+export default function ListCard({ card }: any) {
 	const mathMLRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		// MathML 문자열
-		const mathMLString =
-			'<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>5</mn></math>';
+		const mathMLString = card.content;
 
 		// MathML 문자열을 파싱하여 DOM 요소로 변환
 		const parser = new DOMParser();
@@ -17,14 +16,14 @@ export default function ListCard() {
 		if (mathMLRef.current && mathMLElement) {
 			mathMLRef.current.appendChild(mathMLElement);
 		}
-	}, []);
+	}, [card.content]);
 
 	return (
 		<CardWrapper>
 			<CardImg src="img/math.jpg" alt="math" />
 			<CardBody>
 				<CardTitle>
-					<h1>수학문제</h1>
+					<h1>{card.title}</h1>
 					<div ref={mathMLRef}></div>
 				</CardTitle>
 				<CardInfo>

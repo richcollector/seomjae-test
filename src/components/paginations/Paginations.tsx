@@ -1,23 +1,69 @@
-import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+import { PAGE_PER_COUNT } from '@/common/constants/Constants';
 
-export default function Pagination() {
+interface IPropsPaginations {
+	courseCount: number;
+	setPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function Pagination({ courseCount, setPage }: IPropsPaginations) {
+	const [startPage, setStartPage] = useState(1);
+	const [activedPage, setActivedPage] = useState(1);
+	const lastPage = Math.ceil((courseCount ?? PAGE_PER_COUNT) / PAGE_PER_COUNT);
+	const router = useRouter();
+
+	useEffect(() => {
+		setPage(1);
+	}, [router.query]);
+
+	const onClickPage = (event: React.MouseEvent<HTMLSpanElement>): void => {
+		const activedPage = Number(event.currentTarget.id);
+		setActivedPage(activedPage);
+		setPage(Number(event.currentTarget.id));
+	};
+
+	const onClickPrevPage = (): void => {
+		if (startPage === 1) return;
+		setStartPage(startPage - 5);
+		setActivedPage(startPage - 5);
+		setPage(startPage - 5);
+	};
+
+	const onClickNextPage = (): void => {
+		if (startPage + 5 <= lastPage) {
+			setStartPage(startPage + 5);
+			setActivedPage(startPage + 5);
+			setPage(startPage + 5);
+		}
+	};
+
 	return (
 		<PaginationWrapper>
-			<Page $isActive={false}>
-				<Arrow src="icon/arrowLeft.svg" />
+			<Page $isActive={false} onClick={onClickPrevPage}>
+				<Arrow src="icon/arrowLeft.svg" alt="arrowLeft" />
 			</Page>
-			{new Array(5).fill(1).map((e, index) => (
-				<Page key={index} $isActive={true}>
-					{e}
-				</Page>
-			))}
-			<Page $isActive={false}>
-				<Arrow src="icon/arrowRight.svg" />
+			{new Array(5).fill(1).map(
+				(_, index) =>
+					startPage + index <= lastPage && (
+						<Page
+							key={startPage + index}
+							id={String(startPage + index)}
+							onClick={onClickPage}
+							$isActive={startPage + index === activedPage}
+						>
+							{startPage + index}
+						</Page>
+					),
+			)}
+			<Page $isActive={false} onClick={onClickNextPage}>
+				<Arrow src="icon/arrowRight.svg" alt="arrowRight" />
 			</Page>
 		</PaginationWrapper>
 	);
 }
 
+import styled from 'styled-components';
+import { useRouter } from 'next/router';
 const PaginationWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -29,9 +75,9 @@ const PaginationWrapper = styled.div`
 
 const Page = styled.button<{ $isActive: boolean }>`
 	color: ${props => (props.$isActive ? '#fff' : '#999')};
-	background-color: ${props => (props.$isActive ? 'orange' : '')};
+	background-color: ${props => (props.$isActive ? '#orange' : '')};
 	font-weight: ${props => (props.$isActive ? 'bold' : 'normal')};
-	/* cursor: ${props => (props.$isActive ? 'none' : 'pointer')}; */
+	cursor: ${props => (props.$isActive ? 'none' : 'pointer')};
 
 	border: 0;
 `;

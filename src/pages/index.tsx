@@ -3,15 +3,11 @@ import Pagination from '@/components/paginations/Paginations';
 import CommonButton from '@/components/button/CommonButton';
 import { MAIN_BUTTON } from '@/common/constants/Constants';
 import Head from 'next/head';
+import CommonInput from '@/components/input/CommonInput';
+import SearchIcon from '@/components/input/SearchIcon';
 
 export default function Home() {
-	Apis.get()
-		.then(res => {
-			console.log('??', res);
-		})
-		.catch(err => {
-			console.error('??', err);
-		});
+	const handleOnClick = () => {};
 	return (
 		<>
 			<Head>
@@ -20,7 +16,7 @@ export default function Home() {
 			</Head>
 			<SearchBarWrapper>
 				<SearchIcon />
-				<CommonInput />
+				<SearchInput />
 			</SearchBarWrapper>
 			<SearchButtonBarWrapper>
 				{MAIN_BUTTON.map((btnName, idx) => (
@@ -28,15 +24,13 @@ export default function Home() {
 				))}
 			</SearchButtonBarWrapper>
 			<List />
-			<Pagination />
+			{/* <Pagination /> */}
 		</>
 	);
 }
 
 import styled from 'styled-components';
-import CommonInput from '@/components/input/CommonInput';
-import SearchIcon from '@/components/input/SearchIcon';
-import { Apis } from '@/common/apis/Apis';
+import SearchInput from '@/components/input/SearchInput';
 
 const SearchButtonBarWrapper = styled.div`
 	width: 100%;

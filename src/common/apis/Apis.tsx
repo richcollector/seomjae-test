@@ -7,7 +7,6 @@ const instance = axios.create({
 
 export const Apis = {
 	get: async () => {
-		console.log('호출');
 		return await instance.get('', { params: '' });
 	},
 };

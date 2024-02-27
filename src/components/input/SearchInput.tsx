@@ -1,15 +1,13 @@
-export default function CommonInput({
-	word,
-	handleInputChange,
-}: {
-	word: string;
-	handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}) {
+import useInput from '@/common/hooks/useInput';
+
+export default function SearchInput() {
+	const { searchWord, handleInputChange } = useInput();
+
 	return (
 		<Input
 			type="text"
 			placeholder="입력해 주세요."
-			value={word}
+			value={searchWord}
 			onChange={handleInputChange}
 			autoFocus
 		/>

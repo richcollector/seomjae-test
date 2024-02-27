@@ -1,15 +1,15 @@
 import Link from 'next/link';
 
-export default function CommonButton({ btnName }: { btnName: string[] }) {
+export default function OnClickButton({
+	btnName,
+	handleOnClick,
+}: {
+	btnName: string[];
+	handleOnClick: () => void;
+}) {
 	return (
 		<>
-			{btnName[0] !== '' ? (
-				<Link href={btnName[0]}>
-					<Button>{btnName[1]}</Button>
-				</Link>
-			) : (
-				<Button>{btnName[1]}</Button>
-			)}
+			<Button onClick={handleOnClick}>{btnName[1]}</Button>
 		</>
 	);
 }

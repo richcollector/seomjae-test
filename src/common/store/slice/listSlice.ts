@@ -1,21 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../Store';
 import { Apis } from '@/common/apis/Apis';
 
+interface IListState {
+	list: Array<Object>;
+}
+
 const initialState: IListState = {
-	list: 0,
+	list: [
+		{
+			title: '수학공식1',
+			content:
+				'<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>5</mn></math>',
+		},
+		{
+			title: '수학공식2',
+			content:
+				'<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>5</mn></math>',
+		},
+	],
 };
 
 export const listSlice = createSlice({
 	name: 'list',
 	initialState,
 	reducers: {
-		add: (state, action: PayloadAction<number>) => {
-			state.list += action.payload;
+		add: (state, action: PayloadAction<Array<Object>>) => {
+			state.list.push(...action.payload);
 		},
-		sub: (state, action: PayloadAction<number>) => {
-			state.list -= action.payload;
+		findList: (state, action: PayloadAction<string | undefined>) => {
+			state.list;
 		},
 	},
 });

@@ -4,26 +4,38 @@ import Editor from './customEditor/Editor';
 import { WRITE_BUTTON } from '@/common/constants/Constants';
 import { useAppSelector, useAppDispatch } from '@/common/hooks/useRedux';
 import { selectList, listActions } from '@/common/store/slice/listSlice';
+import { useRouter } from 'next/router';
+import OnClickButton from '@/components/button/OnClickButton copy';
+import { useState } from 'react';
 
 export default function Write() {
 	const list = useAppSelector(selectList);
 	const dispatch = useAppDispatch();
+	const router = useRouter();
+	const [word, serword] = useState('');
 
 	const handleOnClick = () => {
-		dispatch(listActions.add(10));
+		dispatch(listActions.add([{ title: '연습', contnet: '잘가니' }]));
+		router.push('/');
 	};
 
-	console.log('list', list);
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const newVal = event.currentTarget.value;
+	};
 
 	return (
 		<>
 			<TitleBarWrapper>
-				<CommonInput />
+				<CommonInput word={word} handleInputChange={handleInputChange} />
 			</TitleBarWrapper>
 			<WriteButtonBarWrapper>
-				{WRITE_BUTTON.map((btnName, idx) => (
-					<CommonButton key={idx} btnName={btnName} />
-				))}
+				{WRITE_BUTTON.map((btnName, idx) =>
+					btnName[0] === '' ? (
+						<CommonButton key={idx} btnName={btnName} />
+					) : (
+						<OnClickButton key={idx} btnName={btnName} handleOnClick={handleOnClick} />
+					),
+				)}
 			</WriteButtonBarWrapper>
 			<Editor />
 		</>
